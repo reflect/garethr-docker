@@ -18,7 +18,7 @@ export no_proxy='<%= Array(@no_proxy).join(',') %>'
 export TMPDIR="<%= @tmp_dir %>"
 
 # # Use DOCKER_OPTS to modify the daemon startup options.
-DOCKER_OPTS=(
+DOCKER_OPTS="\
 <% if @root_dir %> -g <%= @root_dir %><% end -%>
 <% if @tcp_bind %><% @tcp_bind_array.each do |param| %> -H <%= param %><% end %> <% end -%>
 <% if @tls_enable %> --tls<% if @tls_verify -%> --tlsverify<% end -%> --tlscacert=<%= @tls_cacert %> --tlscert=<%= @tls_cert %> --tlskey=<%= @tls_key %><% end -%>
@@ -60,7 +60,7 @@ DOCKER_OPTS=(
 <% end -%>
 <% @labels.each do |label| %> --label <%= label %><% end -%>
 <% if @extra_parameters %><% @extra_parameters_array.each do |param| %> <%= param %><% end %><% end -%>
-)
+"
 
 <% if @shell_values %><% @shell_values_array.each do |param| %>
 <%= param %><% end %><% end %>
