@@ -904,6 +904,7 @@ describe 'docker', :type => :class do
     it { should contain_package('linux-headers-generic-lts-trusty') }
     it { should contain_service('docker').with_provider('upstart') }
     it { should contain_package('apparmor') }
+    it { should contain_file('/etc/init/docker.conf') }
   end
 
   context 'specific to Ubuntu Trusty' do
@@ -918,6 +919,7 @@ describe 'docker', :type => :class do
     it { should contain_service('docker').with_provider('upstart') }
     it { should contain_package('docker').with_name('docker-engine').with_ensure('present')  }
     it { should contain_package('apparmor') }
+    it { should contain_file('/etc/init/docker.conf') }
   end
 
   context 'newer versions of Debian and Ubuntu' do
@@ -932,6 +934,7 @@ describe 'docker', :type => :class do
       } }
 
       it { should contain_service('docker').with_provider('systemd').with_hasstatus(true).with_hasrestart(true) }
+      it { should_not contain_file('/etc/init/docker.conf') }
     end
 
     context 'Debian >= 8' do
