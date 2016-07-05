@@ -86,10 +86,11 @@ class docker::params {
             $service_hasrestart      = true
             include docker::systemd_reload
           } else {
-            $service_config_template = 'docker/etc/default/docker.erb'
-            $service_provider        = 'upstart'
-            $service_hasstatus       = true
-            $service_hasrestart      = false
+            $service_config_template    = 'docker/etc/default/docker.erb'
+            $service_overrides_template = 'docker/etc/init/docker.conf.erb'
+            $service_provider           = 'upstart'
+            $service_hasstatus          = true
+            $service_hasrestart         = false
           }
         }
         default: {

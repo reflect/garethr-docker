@@ -170,6 +170,13 @@ class docker::service (
         force  => true,
         notify => $_manage_service,
       }
+
+      file { '/etc/init/docker.conf':
+        ensure  => present,
+        content => template($service_overrides_template),
+        force   => true,
+        notify  => $_manage_service,
+      }
     }
   }
 
