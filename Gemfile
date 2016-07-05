@@ -1,3 +1,5 @@
+#ruby=2.3.1
+#ruby-gemset=garethr-docker
 source "https://rubygems.org"
 
 group :test do
